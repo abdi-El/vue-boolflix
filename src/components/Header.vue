@@ -1,7 +1,7 @@
 <template>
   <div>
-      <input type="text" placeholder="inserisci nome film" v-model="filmDaCercare">
-      <button @click="$emit('Cerca', filmDaCercare)">Cerca</button>
+      <input type="text" placeholder="inserisci nome film" v-model.trim="filmDaCercare">
+      <button @click="$emit('Cerca', filmDaCercare) ">Cerca</button>
   </div>
 </template>
 
@@ -10,14 +10,14 @@ export default {
     name: 'Header',
     data(){
         return{
-            filmDaCercare: '',
+            filmDaCercare:'',
         }
-    }
+    },
 }
 </script>
 
 <style lang='scss' scoped>
     input{
-        margin: 0px 5px;
+        margin: 0px 5px 0px 0px;
     }
 </style>
