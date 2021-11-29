@@ -1,7 +1,7 @@
 <template>
   <div>
-      <input type="text" placeholder="inserisci nome film" v-model.trim="filmDaCercare">
-      <button @click="$emit('Cerca', filmDaCercare) ">Cerca</button>
+      <input type="text" placeholder="inserisci nome film" v-model.trim="filmDaCercare" @keyup.enter="$emit('Cerca', filmDaCercare)">
+      <button @click="$emit('Cerca', filmDaCercare)">Cerca</button>
   </div>
 </template>
 
