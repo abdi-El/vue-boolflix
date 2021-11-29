@@ -23,7 +23,10 @@ export default {
   methods:{
     filmDaCercare(nome){
       if(nome != ''){
-        axios.get(`https://api.themoviedb.org/3/search/movie?api_key=8f561fa6df5ee66570e07ee3b22e98a4&query=${nome}`)
+        axios.get('https://api.themoviedb.org/3/search/movie?', {params:{
+          api_key: '8f561fa6df5ee66570e07ee3b22e98a4',
+          query: nome,
+        }})
           .then((result)=>{
             this.risultatoFilmCercato = result.data.results
           })
@@ -35,6 +38,5 @@ export default {
   },
 }
 </script>
-
 <style lang="scss">
 </style>
