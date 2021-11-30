@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="tipo == 'movies'">
+  <div class="container">
+    <div v-if="tipo == 'movies'" class="result">
      <Film
       v-for='risultato in risultati' 
       :key='risultato.id' 
@@ -8,9 +8,10 @@
       :titoloOriginale="risultato.original_title"
       :lingua="risultato.original_language"
       :voto="risultato.vote_average"
+      :img="risultato.backdrop_path"
       />
     </div>
-    <div v-else>
+    <div v-else class="result">
      <Film
       v-for='risultato in risultati' 
       :key='risultato.id' 
@@ -18,6 +19,7 @@
       :titoloOriginale="risultato.original_name"
       :lingua="risultato.original_language"
       :voto="risultato.vote_average"
+      :img="risultato.backdrop_path"
       />
     </div>
   </div>
@@ -37,6 +39,9 @@ export default {
     }
 }
 </script>
-<style>
-
+<style scoped lang='scss'>
+    .result{
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
