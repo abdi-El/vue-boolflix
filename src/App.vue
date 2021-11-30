@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @Cerca='filmDaCercare'/>
+    <Header @Cerca='filmDaCercare' :error="error"/>
     <FilmList :risultati="risultatoFilmCercato" :tipo='tipo'/>
   </div>
 </template>
@@ -20,13 +20,17 @@ export default {
       risultatoFilmCercato: null,
       tipo:'',
       apiLink: '',
+      error: false,
     }
   },
   methods:{
     filmDaCercare(nome){
       if(nome[0] != '' && nome[1] != ''){
+        // settaggio delle variabili props
         this.apiLink = nome[1] == 'movies'  ? 'https://api.themoviedb.org/3/search/movie?' : 'https://api.themoviedb.org/3/search/tv?'
         this.tipo = nome[1] == 'movies'  ? 'movies' : 'tv-series'
+        this.error = false;
+        // chiamata axios
         axios.get(this.apiLink, 
           {params:{
             api_key: '8f561fa6df5ee66570e07ee3b22e98a4',
@@ -37,7 +41,8 @@ export default {
           })
       }
       else{
-        alert('inserire dati corretti')
+        // in caso di un inserimento non valido
+        this.error = true;
       }
     }
   },

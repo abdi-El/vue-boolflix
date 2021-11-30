@@ -8,6 +8,7 @@
       </div>
       <input type="text" placeholder="inserisci nome film" v-model.trim="nome" @keyup.enter="$emit('Cerca', filmDaCercare)">
       <button @click="getData(), $emit('Cerca', filmDaCercare)">Cerca</button>
+      <span class="error" v-if="error">INSERIRE CORRETTAMENTE I DATI</span>
   </div>
 </template>
 
@@ -20,6 +21,9 @@ export default {
             tipo: '',
             filmDaCercare: [],
         }
+    },
+    props:{
+        error: Boolean,
     },
     methods:{
         getData(){
@@ -37,6 +41,13 @@ export default {
         .type{
             margin: 0px 15px 0px 0px;
             width: 80px;
+        }
+        button{
+            margin: 0px 15px 0px 5px;
+        }
+        .error{
+            color:red;
+            text-decoration: underline;
         }
     }
 </style>
