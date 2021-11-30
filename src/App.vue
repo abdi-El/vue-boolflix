@@ -18,25 +18,25 @@ export default {
   data(){
     return{
       risultatoFilmCercato: null,
+      apiLink: '',
     }
   },
   methods:{
     filmDaCercare(nome){
-      if(nome[0] != ''){
-        if(nome[1] == 'movies'){
-            axios.get('https://api.themoviedb.org/3/search/movie?', 
-              {params:{
-                api_key: '8f561fa6df5ee66570e07ee3b22e98a4',
-                query: nome[0],
-              }})
-              .then((result)=>{
-              this.risultatoFilmCercato = result.data.results
-              })
-        }
+      if(nome[0] != '' && nome[1] != ''){
+        this.apiLink = nome[1] == 'movies'  ? 'https://api.themoviedb.org/3/search/movie?' : 'https://api.themoviedb.org/3/search/tv?'
+        axios.get(this.apiLink, 
+          {params:{
+            api_key: '8f561fa6df5ee66570e07ee3b22e98a4',
+            query: nome[0],
+          }})
+          .then((result)=>{
+            this.risultatoFilmCercato = result.data.results
+          })
         
       }
       else{
-        this.risultatoFilmCercato = [];
+        alert('inserire dati corretti')
       }
     }
   },
