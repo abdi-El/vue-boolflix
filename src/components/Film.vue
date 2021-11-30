@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <img :src="`https://image.tmdb.org/t/p/w342${img}`" alt="">
+        <img :src="`https://image.tmdb.org/t/p/w342${img}`" alt="film img">
         <li><strong>Titolo:</strong> {{titolo}}</li>
         <li><strong>Titolo Originale:</strong> {{titoloOriginale}}</li>
         <li>
