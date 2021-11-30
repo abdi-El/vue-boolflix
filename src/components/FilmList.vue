@@ -1,6 +1,7 @@
 <template>
-  <div v-if="risultati.includes(risultati[0].title)">
-      <Film
+  <div>
+    <div v-if="tipo == 'movies'">
+     <Film
       v-for='risultato in risultati' 
       :key='risultato.id' 
       :titolo="risultato.title" 
@@ -8,8 +9,8 @@
       :lingua="risultato.original_language"
       :voto="risultato.vote_average"
       />
-  </div>
-  <div v-else>
+    </div>
+    <div v-else>
      <Film
       v-for='risultato in risultati' 
       :key='risultato.id' 
@@ -18,7 +19,9 @@
       :lingua="risultato.original_language"
       :voto="risultato.vote_average"
       />
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -29,7 +32,8 @@ export default {
         Film
     },
     props:{
-        risultati: Array
+        risultati: Array,
+        tipo: String
     }
 }
 </script>
