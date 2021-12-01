@@ -1,26 +1,28 @@
 <template>
   <div class="container">
-    <div v-if="tipo == 'movies'" class="result">
-     <Film
-      v-for='risultato in risultati' 
-      :key='risultato.id' 
-      :titolo="risultato.title" 
-      :titoloOriginale="risultato.original_title"
-      :lingua="risultato.original_language"
-      :voto="risultato.vote_average"
-      :img="risultato.backdrop_path"
-      />
-    </div>
-    <div v-else class="result">
-     <Film
-      v-for='risultato in risultati' 
-      :key='risultato.id' 
-      :titolo="risultato.name" 
-      :titoloOriginale="risultato.original_name"
-      :lingua="risultato.original_language"
-      :voto="risultato.vote_average"
-      :img="risultato.backdrop_path"
-      />
+    <div class="row">
+      <div v-if="tipo == 'movie'" class="result">
+      <Film
+        v-for='risultato in risultati' 
+        :key='risultato.id' 
+        :titolo="risultato.title" 
+        :titoloOriginale="risultato.original_title"
+        :lingua="risultato.original_language"
+        :voto="risultato.vote_average"
+        :img="risultato.poster_path"
+        />
+      </div>
+      <div v-else class="result">
+      <Film
+        v-for='risultato in risultati' 
+        :key='risultato.id' 
+        :titolo="risultato.name" 
+        :titoloOriginale="risultato.original_name"
+        :lingua="risultato.original_language"
+        :voto="risultato.vote_average"
+        :img="risultato.poster_path"
+        />
+      </div>
     </div>
   </div>
   

@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="container-header">
       <div class="type">
-        <input type="radio" id="movies" name="type" value='movies' v-model="tipo">
+        <input type="radio" id="movies" name="type" value='movie' v-model="tipo">
         <label for="movies">movies</label>
-        <input type="radio" id="tv-series" name="type" value='tv-series' v-model="tipo">
+        <input type="radio" id="tv-series" name="type" value='tv' v-model="tipo">
         <label for="tv-series">tv-series</label>
       </div>
-      <input type="text" placeholder="inserisci nome film" v-model.trim="nome" @keyup.enter="$emit('Cerca', filmDaCercare)">
+      <input type="text" placeholder="inserisci nome film" v-model.trim="nome" @keyup.enter="getData(), $emit('Cerca', filmDaCercare)">
       <button @click="getData(), $emit('Cerca', filmDaCercare)">Cerca</button>
       <span class="error" v-if="error">INSERIRE CORRETTAMENTE I DATI</span>
   </div>
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-    .container{
+    .container-header{
         display: flex;
         align-items: flex-start;
         .type{
