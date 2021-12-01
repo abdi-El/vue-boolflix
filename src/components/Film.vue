@@ -1,7 +1,10 @@
 <template>
-    <div class="card">
-        <ul>
-            <img :src="`https://image.tmdb.org/t/p/w342${img}`" alt="film img">
+    <div class="card" >
+        <div class="content-i">
+            <img v-if="img != undefined " :src="`https://image.tmdb.org/t/p/w342${img}`" alt="film img" class="w-100 poster">
+            <img v-else src="https://www.omil.it/images/no_image.png" alt="film img" class="w-100 poster">
+        </div>
+        <ul class="content-d">
             <li><strong>Titolo:</strong> {{titolo}}</li>
             <li><strong>Titolo Originale:</strong> {{titoloOriginale}}</li>
             <li>
@@ -27,30 +30,57 @@ export default {
         titoloOriginale: String,
         lingua: String,
         voto: Number,
-        img: String
+        img: String,
     },
     data(){
         return{
-            newVoto: (this.voto/2).toFixed()
+            newVoto: (this.voto/2).toFixed(),
         }
-    }
+    },
 }
 </script>
 
 <style scoped lang='scss'>
     .card{
-        background-color: gray;
-        ul{
-        list-style: none;
-        margin: 2px;
-        padding: 3px;
-        transition: transform 0.7s;
-        .flag{
-        width: 25px;
+        border: none;
+        background-color: transparent;
+        padding: 10px;
+        position: relative;
+        box-shadow: none;
+        transition: box-shadow 0.2s;
+        .content-i{
+            position: relative;
+            top: 0;
+            transition: opacity 0.1s, top 0.2s;
         }
-        svg{
-            fill: yellow;
+        &:hover{
+            cursor: pointer;
+            box-shadow: 0px 0px 21px 11px #001233;
         }
+        &:hover .content-i{ 
+            top: -15%;
+            opacity: 0;
+        }
+        &:hover .content-d{
+            top: -50%;
+            opacity: 100%;
+        }
+        .poster{
+                border-radius:10px;
+            }
+        .content-d{
+            list-style: none;
+            position: relative;
+            top: -30%;
+            opacity: 0;
+            transition: opacity 0.1s, top 0.2s;
+            height: 0;
+            .flag{
+                width: 25px;
+             }
+             svg{
+                fill: yellow;
+            }
         }
     }
     

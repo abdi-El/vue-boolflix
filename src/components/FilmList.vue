@@ -1,31 +1,18 @@
 <template>
   <div class="container">
     <div class="row">
-      <div v-if="tipo == 'movie'" class="result">
       <Film
-        v-for='risultato in risultati' 
-        :key='risultato.id' 
-        :titolo="risultato.title" 
-        :titoloOriginale="risultato.original_title"
-        :lingua="risultato.original_language"
-        :voto="risultato.vote_average"
-        :img="risultato.poster_path"
-        />
-      </div>
-      <div v-else class="result">
-      <Film
-        v-for='risultato in risultati' 
-        :key='risultato.id' 
-        :titolo="risultato.name" 
-        :titoloOriginale="risultato.original_name"
-        :lingua="risultato.original_language"
-        :voto="risultato.vote_average"
-        :img="risultato.poster_path"
-        />
-      </div>
+          v-for='risultato in risultati' 
+          :key='risultato.id' 
+          :titolo="risultato.title || risultato.name" 
+          :titoloOriginale="risultato.original_title || risultato.original_name"
+          :lingua="risultato.original_language"
+          :voto="risultato.vote_average"
+          :img="risultato.poster_path"
+          class="col-6 col-md-3 col-lg-3"
+          />
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -37,13 +24,12 @@ export default {
     },
     props:{
         risultati: Array,
-        tipo: String
+        tipo: String,
     }
 }
 </script>
 <style scoped lang='scss'>
-    .result{
-        display: flex;
-        flex-wrap: wrap;
+    .container{
+      padding:100px 0px 40px 0px  ; 
     }
 </style>

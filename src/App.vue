@@ -48,7 +48,9 @@ export default {
 }
 </script>
 <style lang="scss">
- .card:hover ul{
-   transform: rotateY(180deg);
- }
+#app{
+  background-color: #001845;
+  color: white;
+  min-height: 100vh;
+}
 </style>
