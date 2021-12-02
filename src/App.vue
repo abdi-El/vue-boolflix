@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @Cerca='filmDaCercare' :error="error"/>
-    <FilmList :risultati="risultatoFilmCercato" :tipo='tipo'/>
+    <Header @Cerca='filmDaCercare'/>
+    <FilmList :risultati="risultatoFilmCercato" :search='status' class="filmList"/>
   </div>
 </template>
 
@@ -18,39 +18,44 @@ export default {
   data(){
     return{
       risultatoFilmCercato: null,
-      tipo:'',
-      apiLink: '',
-      error: false,
+      status: false,
     }
   },
   methods:{
     filmDaCercare(nome){
-      if(nome[0] != '' && nome[1] != ''){
-        // settaggio delle variabili props
-        this.tipo = nome[1]
-        this.error = false;
+      if(nome != ''){
         // chiamata axios
-        axios.get(`https://api.themoviedb.org/3/search/${nome[1]}?`, 
+        this.apiCall(`https://api.themoviedb.org/3/search/multi?`, nome);
+        this.status = true;
+      }
+      else{
+        this.apiCall('https://api.themoviedb.org/3/trending/all/week?');
+        this.status = false;
+      }
+    },
+    apiCall(link, nome){
+       axios.get(link, 
           {params:{
             api_key: '8f561fa6df5ee66570e07ee3b22e98a4',
-            query: nome[0],
+            query: nome,
           }})
           .then((result)=>{
             this.risultatoFilmCercato = result.data.results
           })
-      }
-      else{
-        // in caso di un inserimento non valido
-        this.error = true;
-      }
     }
   },
+  created(){
+     this.apiCall('https://api.themoviedb.org/3/trending/all/week?');
+     this.status = false;
+  }
 }
 </script>
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap');
 #app{
   background-color: #001845;
   color: white;
   min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 </style>
