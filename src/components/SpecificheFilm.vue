@@ -69,10 +69,14 @@ export default {
         font-weight: 300;
         .arrow{
             svg{
-                scale: 1.5;
+                scale: 2;
                 cursor: pointer;
+                transition: color 0.15s;
                 &:hover{
                     color: #e60a14;
+                    
+                }
+                &:hover path{
                     box-shadow: 0px 0px 15px 5px black;
                 }
             }

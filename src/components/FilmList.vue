@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-if="status">
+  <div class="container" v-if="azione">
     <div class="row"> 
       <h1 v-if="search">Risultati:</h1>
       <div v-else>
@@ -21,7 +21,7 @@
     </div>
   </div>
   <div v-else class="film-info">
-    <SpecificheFilm :film="risultati[Math.abs(filmDaMostrare)]" @back='status=true'/>
+    <SpecificheFilm :film="risultati[Math.abs(filmDaMostrare)]" @back='azione=true'/>
   </div>
 </template>
 
@@ -36,19 +36,19 @@ export default {
     },
     data(){
       return{
-        status: true,
+        azione: true,
         filmDaMostrare: 0,
       }
     },
     methods:{
       showFilm(index){
-        this.status = false
+        this.azione = false
         this.filmDaMostrare= this.risultati.map((e)=>{
           return e.id;
         }).indexOf(index)
       },
       toFalse(){
-        this.status = true
+        this.azione = true
       }
     },
     props:{
