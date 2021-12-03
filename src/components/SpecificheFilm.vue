@@ -93,7 +93,8 @@ export default {
         }
         .data-container{
             padding: 10px;
-            box-shadow: 0px 0px 15px black;
+            box-shadow: 0px 0px 15px 5px black;
+            background-color: #0d3b66;
             ul{
                 display: flex;
                 flex-wrap: wrap;
