@@ -10,6 +10,7 @@
             <div class="col-12 col-md-6 img-container">
                 <img :src="`https://image.tmdb.org/t/p/w342${film.poster_path}`" alt="film poster">
                 <p>{{film.overview}}</p>
+                <iframe :src='`https://www.youtube.com/embed/${trailer}`' title="YouTube video player" allowfullscreen></iframe>
             </div>
             <div class="col-12 col-md-6 data-container">
                 <h3>{{film.title || film.name}}</h3>
@@ -40,6 +41,7 @@ export default {
         return{
             type: this.film.name != null ? 'tv':'movie',
             risultatoCastCercato: [],
+            trailer : null,
         }
     },
     props: {
@@ -52,13 +54,23 @@ export default {
                 }})
                 .then((result)=>{
                     this.risultatoCastCercato = [];
-                    result.data.cast.forEach(element => {
+                    result.data.cast.forEach((element) => {
                         if (this.risultatoCastCercato.length <= 5){
-                            this.risultatoCastCercato.push(element)
+                            this.risultatoCastCercato.push(element)                            
                         } 
                     });
                     
-                })
+                }
+        )
+        axios.get(`https://api.themoviedb.org/3/${this.type}/${this.film.id}/videos?`, 
+                {params:{
+                    api_key: '8f561fa6df5ee66570e07ee3b22e98a4',
+                }})
+                .then((result)=>{
+                    this.trailer = result.data.results[0].key
+                    console.log(this.trailer)
+                }
+        )
     }
 }
 </script>
@@ -67,9 +79,15 @@ export default {
         justify-content: space-between;
         padding: 10px;
         font-weight: 300;
+        position: relative;
         .arrow{
+            position: fixed;
+            left: 5%;
             svg{
-                scale: 2;
+                background-color: #0466c8;
+                padding: 4px;
+                scale: 3;
+                border-radius: 5px;
                 cursor: pointer;
                 transition: color 0.15s;
                 &:hover{
@@ -90,11 +108,18 @@ export default {
                 width: 50%;
                 margin-bottom: 10px ;
             }
+            iframe{
+                width: 100%;
+                height: 30%;
+                box-shadow: 0px 0px 15px 5px black;
+                margin-bottom:100px ;
+            }
         }
         .data-container{
             padding: 10px;
             box-shadow: 0px 0px 15px 5px black;
             background-color: #0d3b66;
+            border-radius: 15px;
             ul{
                 display: flex;
                 flex-wrap: wrap;
@@ -104,7 +129,7 @@ export default {
                     align-items: center;
                     width: 100%;
                     padding: 10px;
-                    transition: scale 0.1s, box-shadow 0.1s;
+                    transition: scale 0.1s, box-shadow 0.1s, opacity 1s;
                     &:hover{
                         cursor: pointer;
                         box-shadow: 0px 0px 15px 1px black;

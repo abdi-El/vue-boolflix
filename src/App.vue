@@ -23,7 +23,8 @@ export default {
   },
   methods:{
     filmDaCercare(nome){
-      this.toFalse()
+      this.toFalse(
+      )
       if(nome != ''){
         // chiamata axios
         this.apiCall(`https://api.themoviedb.org/3/search/multi?`, nome);

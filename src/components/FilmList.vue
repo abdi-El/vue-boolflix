@@ -64,8 +64,8 @@ export default {
         font-size: 14px;
       }
     }
+    
     .film-info{
         min-height: 100vh;
-        // overflow-y: auto;
-      }
+    }
 </style>
