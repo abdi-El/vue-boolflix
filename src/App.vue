@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header @Cerca='filmDaCercare'/>
-    <FilmList :risultati="risultatoFilmCercato" :search='status' ref ='FilmList' class="filmList"/>
+    <div v-if="risultatoFilmCercato">
+      <FilmList :risultati="risultatoFilmCercato" :search='status' ref ='FilmList' class="filmList"/>
+    </div>
   </div>
 </template>
 
@@ -23,8 +25,7 @@ export default {
   },
   methods:{
     filmDaCercare(nome){
-      this.toFalse(
-      )
+      this.toFalse()
       if(nome != ''){
         // chiamata axios
         this.apiCall(`https://api.themoviedb.org/3/search/multi?`, nome);
