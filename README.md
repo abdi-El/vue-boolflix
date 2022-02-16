@@ -1,24 +1,12 @@
 # vue-boolflix
 
-## Project setup
+## Project
 ```
-npm install
+Api call using axios. The movie database call, and with vue showing the result.
 ```
+### Description
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Using the api, vue is able to retrieve all the data necessary to show: list of most trending movies, each film info, search films and show data, cast of each movie and also the trailer. 
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
